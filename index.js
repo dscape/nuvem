@@ -1,1 +1,1 @@
-module.exports = require('./lib/nuvem/');
+module.exports = require('./lib/nuvem');

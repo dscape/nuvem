@@ -7,7 +7,6 @@
   "keywords": ["marklogic", "nuvem", "search", "data", "xml", "nosql"],
   "dependencies": {},
   "directories": { "lib": "./lib/nuvem" },
-  "scripts": { "test": "make test" },
   "main": "./index.js",
   "engines": { "node": ">= 0.4.8" }
 }
