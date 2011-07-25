@@ -3,4 +3,5 @@ module.exports =
   , port: "5983"
   , user: "admin"
   , pass: "admin"
+  , datastore_endpoint: "data/store"
   };
