@@ -29,3 +29,7 @@ db.json.insert("b", {blerh: "foo"}, { quality: 10
   function (err) {
     if(err) console.log(err);
   });
+db.json.insert("b", {blerh: "foo"},
+  function (err) {
+    if(err) console.log(err);
+});
