@@ -24,8 +24,8 @@ db.json.update("a", {blerh: "foo"}, function (err) {
   }
 );
 db.json.insert("b", {blerh: "foo"}, { quality: 10
-  , permissions: ["a","b"]
-  , collections: ["this", "works"] }, 
+  , permission: ["a","b"]
+  , collection: ["this", "works"] }, 
   function (err) {
     if(err) console.log(err);
   });
@@ -33,3 +33,12 @@ db.json.insert("b", {blerh: "foo"},
   function (err) {
     if(err) console.log(err);
 });
+db.json.find(
+  {some: "bar"},
+  {start: 1,
+    end: 2},
+  function (err, document){
+    console.log(err);
+    console.log(document);
+  }
+)
