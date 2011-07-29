@@ -1,14 +1,12 @@
 { "name": "Nuvem"
 , "description": "MarkLogic Driver for Node.js"
-, "url" : "http://developer.marklogic.com"
+, "homepage": "http://developer.marklogic.com"
 , "version": "0.0.1"
-, "author": "Nuno Job <nunojobpinto@gmail.com>"
-, "keywords": ["marklogic", "nuvem", "search", "data", "xml", "nosql"]
+, "author": "Nuno Job <nunojobpinto@gmail.com> (http://nunojob.com)"
+, "keywords": ["MarkLogic", "nuvem", "search", "data", "xml", "json", "nosql"]
 , "dependencies": 
   { "request": "1.9.8"
   , "underscore": "1.1.7"
   }
-, "directories": { "lib": "./lib/nuvem" }
 , "main": "./index.js"
-, "engines": { "node": ">= 0.5.1" }
 }
