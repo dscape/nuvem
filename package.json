@@ -9,4 +9,5 @@
   , "underscore": "1.1.7"
   }
 , "main": "./index.js"
+, { "engines" : { "node" : "0.4.8" } }
 }
