@@ -1,4 +1,4 @@
-{ "name": "Nuvem"
+{ "name": "nuvem"
 , "description": "MarkLogic Driver for Node.js"
 , "homepage": "http://developer.marklogic.com"
 , "version": "0.0.2"
@@ -9,5 +9,5 @@
   , "underscore": "1.1.7"
   }
 , "main": "./index.js"
-, { "engines" : { "node" : "0.4.8" } }
+, "engines" : { "node" : "0.4.8" }
 }
