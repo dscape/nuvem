@@ -1,7 +1,7 @@
 { "name": "nuvem"
 , "description": "MarkLogic Driver for Node.js"
 , "homepage": "http://developer.marklogic.com"
-, "version": "0.0.2"
+, "version": "0.0.3"
 , "author": "Nuno Job <nunojobpinto@gmail.com> (http://nunojob.com)"
 , "keywords": ["MarkLogic", "nuvem", "search", "data", "xml", "json", "nosql"]
 , "dependencies": 

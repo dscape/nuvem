@@ -1,7 +1,11 @@
 module.exports = 
   { host: "127.0.0.1"
-  , port: "5983"
+  , port: "4380"
   , user: "admin"
   , pass: "admin"
-  , datastore_endpoint: "data/store"
+  , endpoint:
+    { store: "data/store"
+    , kv: "data/kvquery"
+    , qs: "data/query"
+    }
   };
