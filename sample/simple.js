@@ -1,8 +1,4 @@
 
-db.json.delete("a", function (err, document) {
-  if(err) console.log(err);
-});
-
 db.json.update("a", {blerh: "foo"}, function (err) {
     if(err) console.log(err);
   }
@@ -14,10 +10,7 @@ db.json.insert("b", {blerh: "foo"}, { quality: 10
   function (err) {
     if(err) console.log(err);
   });
-db.json.insert("b", {blerh: "foo"},
-  function (err) {
-    if(err) console.log(err);
-});
+
 db.json.find(
   {some: "bar"},
   {start: 1,

@@ -1,5 +1,3 @@
-// sudo npm install -g vows
-// node util.js
 var vows   = require('vows')
   , assert = require('assert')
   , u      = require('../lib/nuvem/util');

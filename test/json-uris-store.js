@@ -1,12 +1,17 @@
-// sudo npm install -g vows
-// node store-uris.js
 var vows   = require('vows')
   , assert = require('assert')
   , uri    = require('../lib/nuvem/uris')
   , cfg    = require('../config/marklogic.js');
 
+function credentials() {
+  if (cfg.user && cfg.pass) {
+    return cfg.user + ":" + cfg.pass + "@";
+  }
+  return "";
+}
+
 function jsonBaseDocUri() {
-  return "http://" + cfg.host + ':' + cfg.port +
+  return "http://" + credentials() + cfg.host + ':' + cfg.port +
   "/" + cfg.json.store + "/";
 }
 

@@ -1,5 +1,3 @@
-// sudo npm install -g vows
-// node nuvem-config.js
 var vows   = require('vows')
   , assert = require('assert')
   , cfg    = require('../config/marklogic.js')
