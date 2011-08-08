@@ -7,6 +7,7 @@
 , "dependencies": 
   { "request": "1.9.8"
   , "underscore": "1.1.7"
+  , "async": "0.1.9"
   }
 , "main": "./index.js"
 , "engines" : { "node" : ">=0.4.8" }

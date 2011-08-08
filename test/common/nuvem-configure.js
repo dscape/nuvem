@@ -1,7 +1,7 @@
 var vows   = require('vows')
   , assert = require('assert')
-  , cfg    = require('../config/marklogic.js')
-  , nuvem  = require('../index');
+  , cfg    = require('../../config/marklogic.js')
+  , nuvem  = require('../../index');
 
 vows.describe('db.configure').addBatch(
   { "uri": function () { 

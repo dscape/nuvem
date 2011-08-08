@@ -1,7 +1,7 @@
 var vows   = require('vows')
   , assert = require('assert')
-  , cfg    = require('../config/marklogic.js')
-  , nuvem  = require('../index')
+  , cfg    = require('../../config/marklogic.js')
+  , nuvem  = require('../../index')
   , db     = nuvem(cfg);
 
 vows.describe('Insert JSON').addBatch(
@@ -12,4 +12,4 @@ vows.describe('Insert JSON').addBatch(
     , "should fail": function (err, doc) {
       assert.equal(err.nuvem_code,"DOCGETAUTHFAILED"); }  
     }
-  }).run();
+  }).exportTo(module);

@@ -1,6 +1,6 @@
 var vows   = require('vows')
   , assert = require('assert')
-  , u      = require('../lib/nuvem/util');
+  , u      = require('../../lib/nuvem/util');
 
 vows.describe('qs_stringify').addBatch(
   { "empty opts": function() { assert.equal(u.qs_stringify({}), ""); }

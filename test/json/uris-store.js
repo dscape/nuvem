@@ -1,7 +1,7 @@
 var vows   = require('vows')
   , assert = require('assert')
-  , uri    = require('../lib/nuvem/uris')
-  , cfg    = require('../config/marklogic.js');
+  , cfg    = require('../../config/marklogic.js')
+  , uri    = require('../../lib/nuvem/uris')(cfg);
 
 function credentials() {
   if (cfg.user && cfg.pass) {
@@ -45,7 +45,7 @@ function slashFoo() {
   assert.equal(uri.json.store("/foo"), expected);
 }
 
-vows.describe('jsonStore & xmlStore').addBatch(
+vows.describe('jsonStore').addBatch(
   { "no document uri is provided": noDocUriProvided
   , "foo as doc uri": simpleDocUri
   , "foo with empty opts": fooWithEmptyOpts
@@ -53,4 +53,4 @@ vows.describe('jsonStore & xmlStore').addBatch(
   , "foo with multiple opts": fooWithMultipleOpts
   , "/foo": slashFoo
   }
-).run();
+).exportTo(module);

@@ -1,7 +1,7 @@
 var vows   = require('vows')
   , assert = require('assert')
-  , uri    = require('../lib/nuvem/uris')
-  , cfg    = require('../config/marklogic.js');
+  , cfg    = require('../../config/marklogic.js')
+  , uri    = require('../../lib/nuvem/uris')(cfg);
 
 function credentials() {
   if (cfg.user && cfg.pass) {
@@ -35,4 +35,4 @@ vows.describe('jsonKV').addBatch(
       assert.equal(uri.json.kv({a:"b"}, {index:10, start:1, end:2}), 
         kvUri()+"/10?a=b"); }
   }
-).run();
+).exportTo(module);

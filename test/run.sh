@@ -1,3 +1,7 @@
 # npm install vows
-# http://benchmarkjs.com/docs
-for f in *.js; do echo $f; node $f; done
+# TODO: http://benchmarkjs.com/docs
+#!/bin/bash
+for s in $(ls -d */);
+do 
+  for f in $s*.js; do echo $f; node $f; done;
+done;

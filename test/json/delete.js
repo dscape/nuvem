@@ -1,7 +1,7 @@
 var vows   = require('vows')
   , assert = require('assert')
-  , cfg    = require('../config/marklogic.js')
-  , nuvem  = require('../index')
+  , cfg    = require('../../config/marklogic.js')
+  , nuvem  = require('../../index')
   , db     = nuvem(cfg);
 
 vows.describe('Delete JSON').addBatch(
@@ -27,4 +27,4 @@ vows.describe('Delete JSON').addBatch(
     , "should fail": function (err,doc) {
       assert.equal(err.nuvem_code,"DOCNOTFOUND"); }
     }
-  }).run();
+  }).exportTo(module);

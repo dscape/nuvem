@@ -1,7 +1,7 @@
 var vows   = require('vows')
   , assert = require('assert')
-  , uri    = require('../lib/nuvem/uris')
-  , cfg    = require('../config/marklogic.js');
+  , cfg    = require('../../config/marklogic.js')
+  , uri    = require('../../lib/nuvem/uris')(cfg);
 
 function credentials() {
   if (cfg.user && cfg.pass) {
@@ -26,4 +26,4 @@ vows.describe('jsonQS').addBatch(
   , "contraints": function () { 
       assert.equal(uri.json.qs("foo bar:baz"), qsUri() + "?q=foo%20bar:baz"); }
   }
-).run();
+).exportTo(module);
