@@ -17,7 +17,6 @@ vows.describe('Insert JSON').addBatch(
         db.json.insert("a", {"some": "trash"}, function (err) {
           db.json.get("a", topic.callback); }); }
     , "should retrieve the object that was inserted": function (err,doc) {
-      console.log(err);
       assert.equal(doc.some, "trash"); }
     }
   , "inserting with bad credentials":

@@ -3,9 +3,10 @@ module.exports =
   , port: "4380"
   , user: "admin"
   , pass: "admin"
-  , endpoint:
-    { store: "data/store"
-    , kv: "data/kvquery"
-    , qs: "data/query"
+  , ssl:  false
+  , json:
+    { store: "json/store"
+    , kv:    "json/kvquery"
+    , qs:    "json/query"
     }
   };
