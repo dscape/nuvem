@@ -14,4 +14,6 @@ module.exports =
     , kv:    "xml/kvquery"
     , qs:    "xml/query"
     }
+  , manage:
+    { info: "data/info" }
   };
