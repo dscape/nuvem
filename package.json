@@ -9,6 +9,7 @@
   , "underscore": "1.1.7"
   , "async": "0.1.9"
   , "xml-simple": "0.0.1"
+  , "vows": "0.5.9"
   }
 , "main": "./index.js"
 , "engines" : { "node" : ">=0.4.8" }
