@@ -1,6 +1,6 @@
 var vows   = require('vows')
   , assert = require('assert')
-  , cfg    = require('../../config/marklogic.js')
+  , cfg    = require('../fixtures/marklogic.js')
   , nuvem  = require('../../index')
   , db     = nuvem(cfg);
 

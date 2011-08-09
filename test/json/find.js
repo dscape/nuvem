@@ -1,7 +1,7 @@
 var vows   = require('vows')
   , assert = require('assert')
   , async  = require('async')
-  , cfg    = require('../../config/marklogic.js')
+  , cfg    = require('../fixtures/marklogic.js')
   , nuvem  = require('../../index')
   , db     = nuvem(cfg);
 

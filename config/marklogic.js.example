@@ -9,4 +9,9 @@ module.exports =
     , kv:    "json/kvquery"
     , qs:    "json/query"
     }
+  , xml:
+    { store: "xml/store"
+    , kv:    "xml/kvquery"
+    , qs:    "xml/query"
+    }
   };
