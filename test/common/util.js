@@ -8,5 +8,7 @@ vows.describe('qs_stringify').addBatch(
   , "one opt": function() { assert.equal(u.qs_stringify({f: "b"}), "?f=b"); }
   , "multiple opts": function() { 
       assert.equal(u.qs_stringify({f: "b", a: "c"}), "?f=b&a=c"); }
+  , "empty collection": function() { 
+      assert.equal(u.qs_stringify({collection: ["","c"]}), "?collection=c"); }
   }
 ).run();
