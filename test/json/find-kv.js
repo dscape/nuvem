@@ -41,7 +41,7 @@ vows.describe('jsonFindKV').addBatch(
       }
     , "should return /foobar": function (err, document){
         if(err) { throw err; }
-        assert.equal(document.results[0].uri, "/foobar");
+        assert.equal(document.uri, "/foobar");
         async.parallel(teardown);
       }
     }
