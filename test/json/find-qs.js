@@ -39,7 +39,7 @@ vows.describe('jsonFindQS').addBatch(
           }
         );
       }
-    , "should return /foobar": function (err, document){
+    , "should return /foobar": function (err,_,document){
         if(err) { throw err; }
         assert.equal(document.uri, "/foobar");
         async.parallel(teardown);

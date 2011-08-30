@@ -1,4 +1,4 @@
-module.exports = exports = require('./lib/nuvem');
-exports.version = JSON.parse(require('fs').readFileSync(__dirname + "/package.json"))
+module.exports = exports = nuvem = require('./lib/nuvem');
+nuvem.version = JSON.parse(require('fs').readFileSync(__dirname + "/package.json"))
   .version;
-exports.path     = __dirname;
+nuvem.path     = __dirname;

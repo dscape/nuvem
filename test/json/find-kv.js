@@ -9,9 +9,9 @@ var vows   = require('vows')
 
 function insertDoc(uri,doc,callback) {
   db.json.insert(uri, doc, 
-  function (err) {
-    if(err) { callback(err); return; }
-    callback(null);
+  function (e,_,b) {
+    if(e) { callback(e); return; }
+    callback(null,b);
   });
 }
 
@@ -33,15 +33,16 @@ vows.describe('jsonFindKV').addBatch(
     { topic: function () {
         var topic = this;
         async.parallel(setup,
-          function(err, results){
-            if(err) { throw err; }
+          function(e,h,b){
+            if(e) { throw e; }
             db.json.first({foo: "bar"}, topic.callback);
           }
         );
       }
-    , "should return /foobar": function (err, document){
-        if(err) { throw err; }
-        assert.equal(document.uri, "/foobar");
+    , "should return /foobar": function (e,h,b){
+        if(e) { throw e; }
+        assert.equal(h["status-code"],200);
+        assert.equal(b.uri, "/foobar");
         async.parallel(teardown);
       }
     }

@@ -10,8 +10,8 @@ vows.describe('Delete JSON').addBatch(
         var newdb = nuvem(cfg);
         newdb.configure({pass: "somethingwrong"});
         newdb.json.delete("abdc", this.callback); }
-      , "should fail": function (err, doc) {
-        assert.equal(err.nuvem_code,"DOCDELAUTHFAILED"); }  
+      , "should fail": function (e,h,b) {
+        assert.equal(e.status_code,401); }  
       }
   , "after inserting it":
     { topic: function () {
@@ -24,7 +24,8 @@ vows.describe('Delete JSON').addBatch(
   , "delete document that doesnt exist":
     { topic: function () {
         db.json.delete("retetetetete my cat did this", this.callback); }
-    , "should fail": function (err,doc) {
-      assert.equal(err.nuvem_code,"DOCNOTFOUND"); }
+    , "should fail": function (e,h,b) {
+      assert.equal(e.code,'corona:DOCUMENT-NOT-FOUND');
+      assert.equal(e.status_code,404); }
     }
   }).exportTo(module);

@@ -9,7 +9,7 @@ vows.describe('Insert JSON').addBatch(
     { topic: function() { 
       db.configure({pass: "somethingwrong"});
       db.json.get("fgfd", this.callback); }
-    , "should fail": function (err, doc) {
-      assert.equal(err.nuvem_code,"DOCGETAUTHFAILED"); }  
+    , "should fail": function (err,headers,doc) {
+      assert.equal(err['status-code'],401); }  
     }
   }).exportTo(module);

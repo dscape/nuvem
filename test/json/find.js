@@ -8,8 +8,8 @@ var vows   = require('vows')
 vows.describe('jsonFind').addBatch(
   { "Find false": 
     { topic: function () { db.json.first(false, this.callback); }
-    , "should fail": function (err, document){
-       assert.equal(err.nuvem_code,"INVALID_QUERY");
+    , "should fail": function (err,_,document){
+       assert.equal(err.code,"nuvem:INVALID-QUERY");
       }
     }
   }

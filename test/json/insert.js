@@ -7,9 +7,10 @@ var vows   = require('vows')
 vows.describe('Insert JSON').addBatch(
   { "with malformed json": 
     { topic: function() {
-        db.json.insert("a", "", this.callback); }
-    , "which is an empty string": function (err,doc) {
-        assert.equal(err.nuvem_code,"DOCMALFORMED");
+        db.json.insert("a", "", this.callback);
+         }
+    , "which is an empty string": function (e,h,b) {
+        assert.equal(e.code,"nuvem:NO-BODY");
         db.json.delete("a"); } 
     }
   , "insert decent json":
@@ -17,7 +18,7 @@ vows.describe('Insert JSON').addBatch(
         var topic = this;
         db.json.insert("c", {"some": "trash"}, function (err) {
           db.json.get("c", topic.callback); }); }
-    , "should retrieve the object that was inserted": function (err,doc) {
+    , "should retrieve the object that was inserted": function (err,_,doc) {
       assert.equal(doc.some, "trash");
       db.json.delete("c"); }
     }
@@ -26,8 +27,8 @@ vows.describe('Insert JSON').addBatch(
       var newdb = nuvem(cfg);
       newdb.configure({pass: "somethingwrong"});
       newdb.json.insert("barr", {foo:"bar"}, this.callback); }
-    , "should fail": function (err, doc) {
-      assert.equal(err.nuvem_code,"DOCSTOREAUTHFAILED"); }  
+    , "should fail": function (err,_,_) {
+      assert.equal(err["status-code"],401); }  
     }
   }).exportTo(module);
 

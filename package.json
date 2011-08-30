@@ -1,15 +1,15 @@
 { "name": "nuvem"
 , "description": "MarkLogic Driver for Node.js"
 , "homepage": "http://developer.marklogic.com"
-, "version": "0.1.5"
+, "version": "0.2.0"
 , "author": "Nuno Job <nunojobpinto@gmail.com> (http://nunojob.com)"
 , "keywords": ["MarkLogic", "nuvem", "search", "data", "xml", "json", "nosql"]
 , "dependencies": 
-  { "request": "1.9.8"
-  , "underscore": "1.1.7"
-  , "async": "0.1.9"
-  , "xml-simple": "0.0.1"
-  , "vows": "0.5.9"
+  { "request": "~2.1.1"
+  , "underscore": "~1.1.7"
+  , "async": "~0.1.9"
+  , "xml-simple": "~0.0.1"
+  , "vows": "~0.5.11"
   }
 , "main": "./index.js"
 , "engines" : { "node" : ">=0.4.8" }

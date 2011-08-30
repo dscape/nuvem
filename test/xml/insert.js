@@ -25,7 +25,7 @@ vows.describe('Insert XML').addBatch(
         db.xml.insert("c", "<p>Trash</p>", function (err) {
           db.xml.get("c", topic.callback); }); }
     , "should retrieve the object that was inserted": function (err,doc) {
-      assert.equal(doc, "<p>Trash</p>\n");
+      assert.ok(doc.indexOf("<p>Trash</p>\n") !== -1);
       db.xml.delete("c"); }
     }
   , "inserting with bad credentials":
