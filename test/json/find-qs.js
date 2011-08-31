@@ -1,49 +1,33 @@
-var vows   = require('vows')
+var ensure = require('ensure')
   , assert = require('assert')
   , async  = require('async')
   , cfg    = require('../fixtures/marklogic.js')
   , nuvem  = require('../../index')
   , db     = nuvem(cfg)
-  , setup
-  , teardown;
+  , tests = exports;
 
-function insertDoc(uri,doc,callback) {
-  db.json.insert(uri, doc, 
-  function (err) {
-    if(err) { callback(err); return; }
-    callback(null);
+tests.snow = function (cb) {
+  var setup = 
+    [ function(callback) { db.json.insert("foobar",  {"foo": "fox in the snow"}, callback); }
+    , function(callback) { db.json.insert("barfoo",  {"bar": "where do you go"}, callback); }
+    , function(callback) { db.json.insert("another", {"foo": "to find something you could eat"}, callback); }
+    ];
+  async.parallel(setup, function(e){
+    if(e) { throw e; }
+    db.json.first('snow', cb);
   });
-}
+};
 
-function deleteDoc(name){
-  db.json.delete(name);
-}
+tests.snow_ok = function(e,b,h) {
+  var teardown = 
+    [ function(callback) { db.json.destroy("foobar", callback); }
+    , function(callback) { db.json.destroy("barfoo", callback); }
+    , function(callback) { db.json.destroy("another", callback); }
+    ];
+  if(e) { throw e; }
+  assert.equal(h["status-code"],200);
+  assert.equal(b.uri, "/foobar");
+  async.parallel(teardown);
+};
 
-setup = [ function(callback) { insertDoc("foobar",  {"foo": "Fox in the snow"}, callback); }
-        , function(callback) { insertDoc("barfoo",  {"bar": "Where do you go"}, callback); }
-        , function(callback) { insertDoc("another", {"foo": "To find something you could eat"}, callback); }
-        ];
-teardown = [ function(callback) { deleteDoc("foobar"); }
-           , function(callback) { deleteDoc("barfoo"); }
-           , function(callback) { deleteDoc("another"); }
-           ];
-
-vows.describe('jsonFindQS').addBatch(
-  { "Find first foo bar": 
-    { topic: function () {
-        var topic = this;
-        async.parallel(setup,
-          function(err, results){
-            if(err) { throw err; }
-            db.json.first("snow", topic.callback);
-          }
-        );
-      }
-    , "should return /foobar": function (err,_,document){
-        if(err) { throw err; }
-        assert.equal(document.uri, "/foobar");
-        async.parallel(teardown);
-      }
-    }
-  }
-).exportTo(module);
+ensure(__filename, tests, module);
