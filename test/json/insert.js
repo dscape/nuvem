@@ -41,4 +41,15 @@ tests.parameters_ok = function(e,response) {
   db.json.destroy("f");
 };
 
+tests.extract_path = function (cb) { 
+  db.json.insert("g", {some: {real: {nesting: 'broke' }}},
+    function () { db.json.get("g", {extractPath: 'some.real.nesting'}, cb); });
+};
+
+tests.extract_path_ok = function(e,doc) {
+  assert.isNull(e);
+  assert.equal(doc,'broke');
+  db.json.destroy("g");
+};
+
 ensure(__filename, tests, module);
