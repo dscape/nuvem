@@ -23,4 +23,22 @@ tests.good_json_ok = function(e,doc) {
   db.json.destroy("d");
 };
 
+tests.parameters = function (cb) { 
+  db.json.insert("f", {"foo": "beh"}
+                    , { property: "a:b"
+                      , collection: ['c','d']
+                      , quality: 5
+                      },
+    function () { db.json.get( "f", { include: 'all' }, cb); }); 
+};
+
+tests.parameters_ok = function(e,response) {
+  assert.isNull(e);
+  assert.equal(response.content.foo, "beh");
+  assert.equal(response.properties.a, "b");
+  assert.equal(response.collections[1], "d");
+  assert.equal(response.quality, 5);
+  db.json.destroy("f");
+};
+
 ensure(__filename, tests, module);
