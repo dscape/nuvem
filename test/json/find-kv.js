@@ -13,7 +13,7 @@ var ensure = require('ensure')
 tests.first_foo_bar = function (cb) {
   async.parallel(helper.setup(db,'_foobar',paths,docs), function(e){
     if(e) { throw e; }
-    db.json.find({foo: "bar"}, cb);
+    db.json.first({foo: "bar"}, cb);
   });
 };
 
