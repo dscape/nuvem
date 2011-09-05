@@ -2,9 +2,10 @@ var ensure = require('ensure')
   , assert = require('assert')
   , cfg    = require('../fixtures/marklogic.js')
   , nuvem  = require('../../index')
+  , err      = require('../../lib/nuvem/error')
   , db     = nuvem(cfg)
   , tests = exports
-  , err      = require('../../lib/nuvem/error');
+  ;
 
 tests.empty_error = function (callback) {
   callback(null,err.socket(null,null,null,null));

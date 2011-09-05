@@ -3,7 +3,8 @@ var ensure = require('ensure')
   , cfg    = require('../fixtures/marklogic.js')
   , nuvem  = require('../../index')
   , db     = nuvem(cfg)
-  , tests = exports;
+  , tests = exports
+  ;
 
 tests.malformed = function (cb) { db.json.insert("a", "", cb); };
 

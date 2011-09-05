@@ -4,61 +4,66 @@ var ensure = require('ensure')
   , nuvem  = require('../../index')
   , helper = require('../helper')
   , db     = nuvem(cfg)
-  , tests = exports;
+  , paths = ['soap', 'many', 'examples']
+  , docs  = [{its: 'amazin'}, {run: 'in'}, {crazy: true} ]
+  , tests = exports
+  ;
 
-//tests.phrase = function (cb) {
-//  helper.setup({db: db, salt: '_phrase'},function(e) {
-//    if(e) { throw e; }
-//    db.json.first('"in the snow"', cb);
-//  });
-//};
-//
-//tests.phrase_ok = function(e,b,h) {
-//  if(e) { throw e; }
-//  assert.equal(h["status-code"],200);
-//  assert.ok(b.uri.indexOf("/foo/bar/foobar") !== -1);
-//  helper.teardown({db: db, salt: '_phrase'});
-//};
-//
-//tests.snow = function (cb) {
-//  helper.setup({db: db, salt: '_snow'},function(e) {
-//    if(e) { throw e; }
-//    db.json.first('snow', cb);
-//  });
-//};
-//
-//tests.snow_ok = function(e,b,h) {
-//  if(e) { throw e; }
-//  assert.equal(h["status-code"],200);
-//  assert.ok(b.uri.indexOf("/foo/bar/foobar") !== -1);
-//  helper.teardown({db: db, salt: '_snow'});
-//};
+tests.phrase = function (cb) {
+  helper.setup({db: db, salt: '_phrase'},function(e) {
+    if(e) { throw e; }
+    db.json.first('"in the snow"', cb);
+  });
+};
+
+tests.phrase_ok = function(e,b,h) {
+  if(e) { throw e; }
+  assert.equal(h["status-code"],200);
+  assert.ok(b.uri.indexOf("/foo/bar/foobar") !== -1);
+  helper.teardown({db: db, salt: '_phrase'});
+};
+
+tests.snow = function (cb) {
+  helper.setup({db: db, salt: '_snow'},function(e) {
+    if(e) { throw e; }
+    db.json.first('snow', cb);
+  });
+};
+
+tests.snow_ok = function(e,b,h) {
+  if(e) { throw e; }
+  assert.equal(h["status-code"],200);
+  assert.ok(b.uri.indexOf("/foo/bar/foobar") !== -1);
+  helper.teardown({db: db, salt: '_snow'});
+};
 
 tests.collections = function (cb) {
-  helper.setup({db: db, salt: '_collections', collections: ['dog','red']}
+  helper.setup({db: db, salt: '_collections', collections: ['dog','red']
+      , paths: paths, docs: docs }
     , function(e) {
         if(e) { throw e; }
-        db.json.find('snow', { include: 'all' }, cb);
+        db.json.find('amazin', { include: 'all' }, cb);
   });
 };
 
 tests.collections_ok = function (e,b,h) {
   assert.isNull(e);
   assert.ok(b.collections.indexOf('red')!==-1);
-  helper.teardown({db: db, salt: '_collections'});
+  assert.ok(b.uri.indexOf("soap") !== -1);
+  helper.teardown({db: db, salt: '_collections', paths: paths});
 };
 
-//tests.directories = function (cb) {
-//  helper.setup({db: db, salt: '_directories'}, function(e){
-//    if(e) { throw e; }
-//    db.json.find('fox', { inDirectory: '/foo' }, cb);
-//  });
-//};
-//
-//tests.directories_ok = function (e,b,h) {
-//  assert.isNull(e);
-//  assert.ok(b.uri.indexOf("another") !== -1);
-//  helper.teardown({db: db, salt: '_directories'});
-//};
+tests.directories = function (cb) {
+  helper.setup({db: db, salt: '_directories'}, function(e){
+    if(e) { throw e; }
+    db.json.find('fox', { inDirectory: '/foo' }, cb);
+  });
+};
+
+tests.directories_ok = function (e,b,h) {
+  assert.isNull(e);
+  assert.ok(b.uri.indexOf("another") !== -1);
+  helper.teardown({db: db, salt: '_directories'});
+};
 
 ensure(__filename, tests, module);

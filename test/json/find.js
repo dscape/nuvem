@@ -3,7 +3,8 @@ var ensure = require('ensure')
   , cfg    = require('../fixtures/marklogic.js')
   , nuvem  = require('../../index')
   , db     = nuvem(cfg)
-  , tests = exports;
+  , tests = exports
+  ;
 
 tests.bad_query = function (cb) { db.json.first(false, cb); };
 
