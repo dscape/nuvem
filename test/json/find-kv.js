@@ -1,6 +1,5 @@
 var ensure = require('ensure')
   , assert = require('assert')
-  , async  = require('async')
   , cfg    = require('../fixtures/marklogic.js')
   , nuvem  = require('../../index')
   , helper = require('../helper')
@@ -11,9 +10,10 @@ var ensure = require('ensure')
   ;
 
 tests.first_foo_bar = function (cb) {
-  async.parallel(helper.setup(db,'_foobar',paths,docs), function(e){
-    if(e) { throw e; }
-    db.json.first({foo: "bar"}, cb);
+  helper.setup( {db: db, salt: '_foobar', paths: paths, docs: docs}
+    , function(e){
+        if(e) { throw e; }
+        db.json.first({foo: "bar"}, cb);
   });
 };
 
@@ -21,7 +21,7 @@ tests.first_foo_bar_ok = function(e,b,h) {
   if(e) { throw e; }
   assert.equal(h["status-code"],200);
   assert.equal(b.uri, "/foobar_foobar");
-  async.parallel(helper.teardown(db,'_foobar',paths,docs));
+  helper.teardown({db: db, salt: '_foobar', paths: paths, docs: docs});
 };
 
 ensure(__filename, tests, module);

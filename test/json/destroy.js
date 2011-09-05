@@ -1,6 +1,5 @@
 var ensure = require('ensure')
   , assert = require('assert')
-  , async  = require('async')
   , db     = require('../../index')(__dirname + '/../fixtures/marklogic.js')
   , tests  = exports;
 
@@ -14,15 +13,18 @@ tests.simple_ok = function(e,b,h) {
 };
 
 //tests.bulk_query = function (cb) {
-//  async.parallel(helper.setup(db,'_bulk_query'), function(e){
-//    if(e) { throw e; }
-//    db.json.destroy(, cb);
+//  helper.setup({db: db, salt: '_bulk_query'}
+//    , function(e){
+//        if(e) { throw e; }
+//        db.json.destroy(, cb);
 //  });
 //};
 //
 //tests.bulk_query_ok = function (e,b,h) {
 //  assert.isNull(e);
 //}
+
+// update to latest request
 
 tests.bulk_custom_query = function (cb) {
   cb(null,true);
