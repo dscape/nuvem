@@ -3,31 +3,25 @@ var ensure = require('ensure')
   , async  = require('async')
   , cfg    = require('../fixtures/marklogic.js')
   , nuvem  = require('../../index')
+  , helper = require('../helper')
   , db     = nuvem(cfg)
-  , tests = exports;
+  , tests  = exports
+  , paths  = ['foobar', 'foobaz', 'another']
+  , docs   = [{foo: 'bar'}, {foo: 'baz'}, {'another': true}] 
+  ;
 
 tests.first_foo_bar = function (cb) {
-  var setup = 
-    [ function(callback) { db.json.insert("foobar",  {"foo": "bar"}, callback); }
-    , function(callback) { db.json.insert("barfoo",  {"bar": "foo"}, callback); }
-    , function(callback) { db.json.insert("another", {"foo": "bar"}, callback); }
-    ];
-  async.parallel(setup, function(e){
+  async.parallel(helper.setup(db,'_foobar',paths,docs), function(e){
     if(e) { throw e; }
-    db.json.first({foo: "bar"}, cb);
+    db.json.find({foo: "bar"}, cb);
   });
 };
 
 tests.first_foo_bar_ok = function(e,b,h) {
-  var teardown = 
-    [ function(callback) { db.json.destroy("foobar", callback); }
-    , function(callback) { db.json.destroy("barfoo", callback); }
-    , function(callback) { db.json.destroy("another", callback); }
-    ];
   if(e) { throw e; }
   assert.equal(h["status-code"],200);
-  assert.equal(b.uri, "/foobar");
-  async.parallel(teardown);
+  assert.equal(b.uri, "/foobar_foobar");
+  async.parallel(helper.teardown(db,'_foobar',paths,docs));
 };
 
 ensure(__filename, tests, module);
