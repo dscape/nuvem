@@ -18,10 +18,10 @@ tests.first_foo_bar = function (cb) {
 };
 
 tests.first_foo_bar_ok = function(e,b,h) {
+  helper.teardown({db: db, salt: '_foobar', paths: paths, docs: docs});
   if(e) { throw e; }
   assert.equal(h["status-code"],200);
   assert.equal(b.uri, "/foobar_foobar");
-  helper.teardown({db: db, salt: '_foobar', paths: paths, docs: docs});
 };
 
-ensure(__filename, tests, module);
+ensure(__filename, tests, module,process.argv[2]);

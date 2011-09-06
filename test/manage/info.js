@@ -16,4 +16,4 @@ tests.info_ok = function (_,doc) {
   assert.ok(typeof doc.indexes === "object");
 };
 
-ensure(__filename, tests, module);
+ensure(__filename, tests, module,process.argv[2]);

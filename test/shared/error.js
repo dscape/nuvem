@@ -29,4 +29,4 @@ tests.error_412_ok = function (_,e) {
   assert.isEmpty(e.request);
 };
 
-ensure(__filename, tests, module);
+ensure(__filename, tests, module,process.argv[2]);

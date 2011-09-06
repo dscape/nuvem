@@ -17,24 +17,24 @@ tests.phrase = function (cb) {
 };
 
 tests.phrase_ok = function(e,b,h) {
+  helper.teardown({db: db, salt: '_phrase'});
   if(e) { throw e; }
   assert.equal(h["status-code"],200);
   assert.ok(b.uri.indexOf("/foo/bar/foobar") !== -1);
-  helper.teardown({db: db, salt: '_phrase'});
 };
 
 tests.snow = function (cb) {
   helper.setup({db: db, salt: '_snow'},function(e) {
     if(e) { throw e; }
-    db.json.first('snow', cb);
+    db.json.find('fox', cb);
   });
 };
 
 tests.snow_ok = function(e,b,h) {
+  helper.teardown({db: db, salt: '_snow'});
   if(e) { throw e; }
   assert.equal(h["status-code"],200);
   assert.ok(b.uri.indexOf("/foo/bar/foobar") !== -1);
-  helper.teardown({db: db, salt: '_snow'});
 };
 
 tests.collections = function (cb) {
@@ -47,10 +47,10 @@ tests.collections = function (cb) {
 };
 
 tests.collections_ok = function (e,b,h) {
+  helper.teardown({db: db, salt: '_collections', paths: paths});
   assert.isNull(e);
   assert.ok(b.collections.indexOf('red')!==-1);
   assert.ok(b.uri.indexOf("soap") !== -1);
-  helper.teardown({db: db, salt: '_collections', paths: paths});
 };
 
 tests.directories = function (cb) {
@@ -61,9 +61,9 @@ tests.directories = function (cb) {
 };
 
 tests.directories_ok = function (e,b,h) {
+  helper.teardown({db: db, salt: '_directories'});
   assert.isNull(e);
   assert.ok(b.uri.indexOf("another") !== -1);
-  helper.teardown({db: db, salt: '_directories'});
 };
 
-ensure(__filename, tests, module);
+ensure(__filename, tests, module,process.argv[2]);

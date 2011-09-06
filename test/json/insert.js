@@ -19,9 +19,9 @@ tests.good_json = function (cb) {
 };
 
 tests.good_json_ok = function(e,doc) {
+  db.json.destroy("d");
   assert.isNull(e);
   assert.equal(doc.some, "trash");
-  db.json.destroy("d");
 };
 
 tests.parameters = function (cb) { 
@@ -34,12 +34,12 @@ tests.parameters = function (cb) {
 };
 
 tests.parameters_ok = function(e,response) {
+  db.json.destroy("f");
   assert.isNull(e);
   assert.equal(response.content.foo, "beh");
   assert.equal(response.properties.a, "b");
   assert.equal(response.collections[1], "d");
   assert.equal(response.quality, 5);
-  db.json.destroy("f");
 };
 
 tests.extract_path = function (cb) { 
@@ -48,9 +48,9 @@ tests.extract_path = function (cb) {
 };
 
 tests.extract_path_ok = function(e,doc) {
+  db.json.destroy("g");
   assert.isNull(e);
   assert.equal(doc,'broke');
-  db.json.destroy("g");
 };
 
-ensure(__filename, tests, module);
+ensure(__filename, tests, module,process.argv[2]);

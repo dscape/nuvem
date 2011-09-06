@@ -12,4 +12,4 @@ tests.bad_query_ok = function(e,_) {
   assert.equal(e.code,"nuvem:INVALID-QUERY");
 };
 
-ensure(__filename, tests, module);
+ensure(__filename, tests, module,process.argv[2]);
