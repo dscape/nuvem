@@ -20,9 +20,9 @@ tests.stemmed = function (cb) {
           { key: 'p'
           , string: 'RUN'
           , caseSensitive: false
-          , stemmed: false
+          , stemmed: true
           }
-        }, cb);
+        }, {start: 1, end: 2}, cb);
   });
 };
 
@@ -30,7 +30,8 @@ tests.stemmed_ok = function(e,b,h) {
   helper.teardown({db: db, salt: '_stemmed', paths: paths});
   if(e) { throw e; }
   assert.equal(h["status-code"],200);
-  assert.equal(b, "/foobar_foobar");
+  assert.equal(b.meta.total,2);
+  assert.equal(b.results.length,2);
 };
 
 ensure(__filename, tests, module,process.argv[2]);
