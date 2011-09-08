@@ -6,10 +6,10 @@ var ensure = require('ensure')
   , tests = exports
   ;
 
-tests.malformed = function (cb) { db.json.insert("a", "", cb); };
+tests.malformed = function (cb) { db.json.insert("a", "abcd", cb); };
 
 tests.malformed_ok = function(e,b,h) {
-  assert.equal(e.code,"nuvem:NO-BODY");
+  assert.equal(e['status-code'],500);
   db.json.destroy("a");
 };
 

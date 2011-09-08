@@ -7,30 +7,28 @@ var ensure = require('ensure')
   ;
 
 tests.get = function (cb) {
-  db.manage.field.create('abs'
-  , { includeKey: ['abstract', 'summation', 'introduction'] }
+  db.manage.range.create('foo'
+  , { key: 'foo', datatype: 'string' }
   , function(e,b,h) {
     if (e) { return cb(e); }
-    db.manage.field.get('abs', cb);
+    db.manage.range.get('foo', cb);
   });
 };
 
 tests.get_ok = function (e,b,h) {
-  db.manage.field.destroy('abs');
+  db.manage.range.destroy('foo');
   assert.isNull(e);
-  assert.equal(b.name,'abs');
-  assert.equal(b.mode,'contains');
-  assert.equal(b.includes.length,3);  
+  assert.equal(b,'WHAT?');
 };
 
 tests.destroy = function (cb) {
-  // some weird problem when creating two fields at the same time
+  // some weird problem when creating two indexes at the same time
   setTimeout(function() {
-    db.manage.field.create('author'
-    , { includeKey: ['artist', 'author'] }
+    db.manage.range.create('bar'
+    , { key: 'bar', datatype: 'string' }
     , function(e,b,h) {
       if (e) { return cb(e); }
-      db.manage.field.destroy('author', cb);
+      db.manage.range.destroy('bar', cb);
     });}, 1000);
 };
 

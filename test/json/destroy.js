@@ -29,7 +29,7 @@ tests.bulk_query = function (cb) {
 tests.bulk_query_ok = function (e,b,h) {
   helper.teardown({db: db, salt: '_bulk_query', paths: paths2});
   assert.isNull(e);
-  assert.equal(b.meta, ['/mr_bulk_custom_query']);
+  assert.equal(b.meta.deleted, 1);
 };
 
 tests.bulk_custom_query = function (cb) {
