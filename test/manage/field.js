@@ -1,4 +1,5 @@
-var ensure = require('ensure')
+/*
+  var ensure = require('ensure')
   , assert = require('assert')
   , cfg    = require('../fixtures/marklogic.js')
   , nuvem  = require('../../index')
@@ -7,7 +8,7 @@ var ensure = require('ensure')
   ;
 
 tests.get = function (cb) {
-  db.manage.field.create('abs'
+  db.manage.field.create('abst'
   , { includeKey: ['abstract', 'summation', 'introduction'] }
   , function(e,b,h) {
     if (e) { return cb(e); }
@@ -16,9 +17,9 @@ tests.get = function (cb) {
 };
 
 tests.get_ok = function (e,b,h) {
-  db.manage.field.destroy('abs');
+  db.manage.field.destroy('abst');
   assert.isNull(e);
-  assert.equal(b.name,'abs');
+  assert.equal(b.name,'abst');
   assert.equal(b.mode,'contains');
   assert.equal(b.includes.length,3);  
 };
@@ -41,3 +42,4 @@ tests.destroy_ok = function (e,b,h) {
 };
 
 ensure(__filename, tests, module,process.argv[2]);
+*/
