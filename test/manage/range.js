@@ -8,7 +8,7 @@ var ensure = require('ensure')
 
 tests.get = function (cb) {
   db.manage.range.create('foo'
-  , { key: 'foo', datatype: 'string' }
+  , { key: 'foo', type: 'string' }
   , function(e,b,h) {
     if (e) { return cb(e); }
     db.manage.range.get('foo', cb);
@@ -25,7 +25,7 @@ tests.destroy = function (cb) {
   // some weird problem when creating two indexes at the same time
   setTimeout(function() {
     db.manage.range.create('bar'
-    , { key: 'bar', datatype: 'string' }
+    , { key: 'bar', type: 'string' }
     , function(e,b,h) {
       if (e) { return cb(e); }
       db.manage.range.destroy('bar', cb);
